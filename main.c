@@ -3,8 +3,10 @@
 #include <ctype.h>
 #include <string.h>
 #include <stdbool.h>
+#define MAX_ROMAN 10000
 int roman (int,int,char);
 int myroman (int, int, char[]);
+bool isValidArabicNumber(int a);
 double getInput(void);
 bool isScientificNotation(const char *input);
 
@@ -12,23 +14,13 @@ int main(void){
     int a;
     printf("Welcome to roman numeral converter!Enter a year you would like to convert(input must be between 0 and 10000): \n");
     
- 
-    while (1){
-        a = getInput();
-
-      
-
-           if(a <= 0 || a > 9999){
-               printf("\n");
-               printf("Input must be between 0 and 10000.Please, try again: ");
-              
-
-           }
-           else{
-               break;
-
-           }
-       }
+        while (1) {
+            a = getInput();
+            if (isValidArabicNumber(a)) {
+                break;
+            }
+            printf("Input must be between 1 and %d. Please, try again: ", MAX_ROMAN);
+        }
 
         a=roman(a,1000,'M');
         a=myroman(a,900, "CM");
@@ -46,6 +38,10 @@ int main(void){
     printf("\n");
           return 0;
 
+}
+
+bool isValidArabicNumber(int a) {
+    return a >= 1 && a <= MAX_ROMAN;
 }
 int roman(int i,int j,char c){
        while (i>=j){
@@ -108,3 +104,4 @@ bool isScientificNotation(const char *input) {
 
     return (eCount == 1) && (digitsBeforeE > 0) && (digitsAfterE > 0);
 }
+
