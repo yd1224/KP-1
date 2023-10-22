@@ -68,7 +68,7 @@ double getInput(void) {
         scanf("%s", input);
 
         int invalidInput = 0;
-        for (int i = 0; input[i] != '\0'; i++) {
+        for (int i = 0; input[i]; i++) {
             if (isdigit(input[i]) == 0 && input[i] != '.' && input[i] != '-' && !isScientificNotation(input)) {
                 printf("\nYour input is invalid, try again: ");
                 invalidInput = 1;
